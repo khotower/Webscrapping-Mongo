@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block body %}
+<h1 style="text-align:center;">Mission to Mars </h1>
+<div style="text-align:center;">
+  <form action="/scrape" method="POST">
+      <input type="submit" value="Scrape New Data" style="background-color:#0688fa;text-shadow:0px 1px 0px #263666;color:#ffffff;box-shadow:inset 0px -3px 7px 0px #29bbff;background-color:#2dabf9;border-radius:3px;border:1px solid #0b0e07;display:inline-block;font-size:15px;padding:5px 13px;">
+  </form>
+</div>
+<br><br>
+<h2 style="width:1200px;margin: auto;">Latest Mars News</h2>
+<div class="table" style="width:1200px;height:250px; margin: auto;overflow-y:scroll;">
+  {% for news in Mars_News%}
+      <h4>{{news["news_title"]}}</h4>
+      <p>{{news["news_p"]}}</p>
+  {% endfor %}
+</div>
+
+<div class="table" style="width:1200px;height:500px; margin: auto;">
+  <div style="float: left;width: 50%;height: 300px;">
+    <h2>Featured Mars Image</h2>
+    {% for image_url in Featured_Image%}
+      <img src={{image_url["Featured_Mars_Image"]}} width="550" height="500">
+    {% endfor %}
+  </div>
+  <div style="float: right;width: 50%;height: 500px;">
+    <h3 >Mars Facts</h3>
+    <table style=" background-repeat:no-repeat; width:450px;margin:0;" cellpadding="1" cellspacing="1" border="1">
+      <tr style="height:40px; width:450px; margin:0;">
+        <th style="height:40px; width:40px; margin:0;">Description</th>
+        <th style="height:40px; width:40px; margin:0;">Facts</th>
+      </tr>
+      {% for fact in Mars_facts%}
+          <tr style="height:40px; width:450px; margin:0;">
+            <td style="height:40px; width:40px; margin:0;">{{fact['Description']}}</td>
+            <td style="height:40px; width:40px; margin:0;">{{fact['Facts']}}</td>
+          </tr>
+      {% endfor %}
+</table>
+
+  </div>
+</div>
+<br><br><br><br><br><br><br><br>
+<div class="table" style="width:1200px;height:700px; margin: auto;">
+
+    <h2 >Mars Hemispheres</h2>
+    <br><br>
+    <table style=" background-repeat:no-repeat; width:1500px;margin:0;text-align:center;" cellpadding="2" cellspacing="2">
+      {% for hemisphere in Mars_hemisphere%}
+          <tr style="height:40px; width:450px; margin:0;">
+            <td style="height:40px; width:40px; margin:0;text-align:justify;">{{hemisphere['Hemisphere_Title']}}</td>
+            <td style="height:40px; width:40px; margin:0;text-align:justify;"><img src={{hemisphere['ImageLocation']}} width="150" height="150"></td>
+          </tr>
+      {% endfor %}
+    </table>
+
+
+</div>
+{% endblock %}

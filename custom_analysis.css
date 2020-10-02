@@ -1,0 +1,29 @@
+.table {
+  display: table;
+}
+.table .row {
+  display: table-row;
+}
+.table .td {
+  display: table-cell;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+/** not needed if using media queries from below. Only for demo **/
+.table.narrow .td {
+  display: block;
+}
+
+/*****
+
+@media (max-width: 500px) {
+   .table .td {
+      display: block;
+   }
+}
+
+******/
+.text-center {
+  text-align: center;
+}
